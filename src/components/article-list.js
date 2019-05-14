@@ -5,7 +5,8 @@ import { getArticles } from "../api";
 class ArticleList extends Component {
   state = {
     articles: [],
-    loading: true
+    loading: true,
+    sortBy: ""
   };
 
   render() {
@@ -13,6 +14,15 @@ class ArticleList extends Component {
     return (
       <div className="article-list">
         <h1>{this.props.topic} Articles</h1>
+        <form className="sort-by">
+          <p>Sort By:</p>
+          <select>
+            <option value="date created">Date</option>
+            <option value="comments">Comment Count</option>
+            <option value="votes">Votes</option>
+          </select>
+          <button>Sort</button>
+        </form>
         <ul>
           {this.state.articles.map(article => {
             return (
