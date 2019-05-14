@@ -13,4 +13,10 @@ const getSingleArticle = article_id => {
   );
 };
 
-export { getArticles, getSingleArticle };
+const getComments = article_id => {
+  return Axios.get(`${url}/articles/${article_id}/comments`).then(
+    ({ data: { comments } }) => comments
+  );
+};
+
+export { getArticles, getSingleArticle, getComments };

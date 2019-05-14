@@ -1,8 +1,9 @@
 import React from "react";
-import { getSingleArticle } from "../api";
+import CommentList from "./comment-list";
+import { getSingleArticle, getComments } from "../api";
 
 class ArticleCard extends React.Component {
-  state = { article: [], loading: true };
+  state = { article: [], loading: true, comments: [], showComments: false };
   render() {
     if (this.state.loading) return <p>loading...</p>;
     return (
@@ -14,6 +15,8 @@ class ArticleCard extends React.Component {
         <p>{this.state.article.body}</p>
         <p>Date: {this.state.article.created_at}</p>
         <p>Votes: {this.state.article.votes}</p>
+        <button onClick={this.toggleComments}>Show / Hide comments</button>
+        {this.state.showComments && <CommentList />}
         <p>Total comments: {this.state.article.comment_count}</p>
       </div>
     );
@@ -22,7 +25,15 @@ class ArticleCard extends React.Component {
     getSingleArticle(this.props.article_id).then(article =>
       this.setState({ article, loading: false })
     );
+    getComments(this.props.article_id).then(comments =>
+      this.setState({ comments })
+    );
   }
+  toggleComments = () => {
+    this.setState(prevState => {
+      return { showComments: !prevState.showComments };
+    });
+  };
 }
 
 export default ArticleCard;
