@@ -6,12 +6,17 @@ import ArticleList from "./components/article-list";
 import ArticleCard from "./components/article-card";
 import { Router, Link } from "@reach/router";
 import TopicList from "./components/topic-list";
+import { logIn } from "./api";
 
 class App extends Component {
+  state = { isLoggedIn: false, currentUser: "" };
   render() {
     return (
       <div className="App">
-        <Nav />
+        <Nav
+          handleSubmit={this.handleSubmit}
+          currentUser={this.state.currentUser}
+        />
         <Header />
         <Router>
           <ArticleList path="/" />
@@ -22,6 +27,13 @@ class App extends Component {
       </div>
     );
   }
+  handleSubmit = username => {
+    logIn(username).then(({ username }) => {
+      if (username) {
+        this.setState({ isLoggedIn: true, currentUser: username });
+      }
+    });
+  };
 }
 
 export default App;

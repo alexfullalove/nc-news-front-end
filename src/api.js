@@ -23,4 +23,10 @@ const getTopics = () => {
   return Axios.get(`${url}/topics`).then(({ data: { topics } }) => topics);
 };
 
-export { getArticles, getSingleArticle, getComments, getTopics };
+const logIn = username => {
+  return Axios.get(`${url}/users/${username}`)
+    .then(({ data: { user } }) => user)
+    .catch(({ message }) => message);
+};
+
+export { getArticles, getSingleArticle, getComments, getTopics, logIn };
