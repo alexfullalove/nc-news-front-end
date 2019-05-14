@@ -12,7 +12,7 @@ class ArticleList extends Component {
     if (this.state.loading) return <p>loading...</p>;
     return (
       <div className="article-list">
-        <h1>Articles</h1>
+        <h1>{this.props.topic} Articles</h1>
         <ul>
           {this.state.articles.map(article => {
             return (
@@ -32,7 +32,10 @@ class ArticleList extends Component {
     );
   }
   componentDidMount() {
-    getArticles().then(articles => this.setState({ articles, loading: false }));
+    const { topic } = this.props;
+    getArticles({ topic }).then(articles =>
+      this.setState({ articles, loading: false })
+    );
   }
 }
 

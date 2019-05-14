@@ -1,8 +1,8 @@
 import Axios from "axios";
 const url = "https://thawing-fortress-68943.herokuapp.com/api";
 
-const getArticles = () => {
-  return Axios.get(`${url}/articles`).then(
+const getArticles = params => {
+  return Axios.get(`${url}/articles`, { params }).then(
     ({ data: { articles } }) => articles
   );
 };
@@ -19,4 +19,8 @@ const getComments = article_id => {
   );
 };
 
-export { getArticles, getSingleArticle, getComments };
+const getTopics = () => {
+  return Axios.get(`${url}/topics`).then(({ data: { topics } }) => topics);
+};
+
+export { getArticles, getSingleArticle, getComments, getTopics };
