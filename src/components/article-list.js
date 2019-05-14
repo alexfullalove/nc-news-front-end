@@ -23,6 +23,7 @@ class ArticleList extends Component {
                 <p>Author: {article.author}</p>
                 <p>Comments: {article.comment_count}</p>
                 <p>Votes: {article.votes}</p>
+                <p>Created: {article.created_at}</p>
               </li>
             );
           })}
