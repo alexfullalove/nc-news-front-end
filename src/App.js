@@ -16,6 +16,7 @@ class App extends Component {
         <Nav
           handleSubmit={this.handleSubmit}
           currentUser={this.state.currentUser}
+          handleSignOut={this.handleSignOut}
         />
         <Header />
         <Router>
@@ -33,6 +34,9 @@ class App extends Component {
         this.setState({ isLoggedIn: true, currentUser: username });
       }
     });
+  };
+  handleSignOut = () => {
+    this.setState({ isLoggedIn: false, currentUser: "" });
   };
 }
 

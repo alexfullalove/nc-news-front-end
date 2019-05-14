@@ -17,8 +17,8 @@ class ArticleList extends Component {
         <form className="sort-by">
           <p>Sort By:</p>
           <select>
-            <option value="date created">Date</option>
-            <option value="comments">Comment Count</option>
+            <option value="created_at">Date</option>
+            <option value="comment_count">Comment Count</option>
             <option value="votes">Votes</option>
           </select>
           <button>Sort</button>

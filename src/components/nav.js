@@ -26,7 +26,16 @@ class Nav extends Component {
           </form>
         )}
         {!this.state.showLogin && <p>{this.props.currentUser}</p>}
-        {!this.state.showLogin && <button>Sign out</button>}
+        {!this.state.showLogin && (
+          <button
+            onClick={e => {
+              this.setState({ showLogin: true });
+              this.props.handleSignOut();
+            }}
+          >
+            Sign out
+          </button>
+        )}
       </nav>
     );
   }
