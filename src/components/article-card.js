@@ -16,7 +16,11 @@ class ArticleCard extends React.Component {
         <p>Date: {this.state.article.created_at}</p>
         <p>Votes: {this.state.article.votes}</p>
         <button onClick={this.toggleComments}>Show / Hide comments</button>
-        {this.state.showComments && <CommentList />}
+        {this.state.showComments && (
+          <ul className="comment-list">
+            <CommentList comments={this.state.comments} />
+          </ul>
+        )}
         <p>Total comments: {this.state.article.comment_count}</p>
       </div>
     );
