@@ -3,13 +3,24 @@ import React, { Component } from "react";
 class AddComment extends Component {
   state = {
     author: "",
-    isLoggedIn: false
+    isLoggedIn: false,
+    comment: ""
   };
   render() {
     return (
       <div className="comment-form">
-        <form>
-          <textarea />
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            this.props.handlePostComment(this.state.comment);
+          }}
+        >
+          <textarea
+            onChange={this.handleTypeComment}
+            placeholder="type your comment here..."
+          />
+          <button>Post</button>
+          <button>Cancel</button>
         </form>
       </div>
     );
@@ -25,6 +36,10 @@ class AddComment extends Component {
       this.setState({ isLoggedIn: this.props.isLoggedIn });
     }
   }
+
+  handleTypeComment = e => {
+    this.setState({ comment: e.target.value });
+  };
 }
 
 export default AddComment;

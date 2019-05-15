@@ -4,8 +4,8 @@ import React, { Component } from "react";
 
 class CommentList extends Component {
   state = {
-    isLoggedin: false,
-    currentUser: "",
+    isLoggedIn: this.props.isLoggedIn,
+    currentUser: this.props.currentUser,
     comments: this.props.comments,
     showAddComment: false
   };
@@ -27,6 +27,8 @@ class CommentList extends Component {
           <AddComment
             isLoggedIn={this.state.isLoggedIn}
             currentUser={this.state.currentUser}
+            showAddComment={this.state.showAddComment}
+            handlePostComment={this.handlePostComment}
           />
         )}
         {this.state.comments.map(comment => {
@@ -39,8 +41,19 @@ class CommentList extends Component {
       </div>
     );
   }
+  handlePostComment = comment => {
+    console.log(comment);
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.isLoggedIn !== this.state.isLoggedIn) {
+      console.log(this.state.showAddComment, "<---- show comment");
+      this.setState({ showAddComment: false });
+    }
+  }
+
   togglePostComment = () => {
-    this.setState({ showAddComment: true });
+    this.setState({ showAddComment: !this.state.showAddComment });
   };
 }
 
