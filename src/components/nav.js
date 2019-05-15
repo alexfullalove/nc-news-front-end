@@ -6,8 +6,7 @@ class Nav extends Component {
   render() {
     return (
       <nav className="nav">
-        <Link to="/">Home</Link> | <Link to="/topics">Topics</Link> |{" "}
-        <Link to="/">Home</Link>
+        <Link to="/">Home</Link> | <Link to="/topics">Topics</Link> |
         {this.state.showLogin && (
           <form className="login-form" onSubmit={this.handleLogIn}>
             <input
@@ -18,10 +17,8 @@ class Nav extends Component {
             <button>Log in</button>
           </form>
         )}
-        {!this.state.showLogin && this.props.isLoggedIn && (
-          <p>{this.props.currentUser}</p>
-        )}
-        {!this.state.showLogin && this.props.isLoggedIn && (
+        {!this.state.showLogin && <p>{this.props.currentUser}</p>}
+        {!this.state.showLogin && (
           <button
             onClick={e => {
               this.setState({ showLogin: true });
@@ -39,14 +36,17 @@ class Nav extends Component {
   };
   handleLogIn = e => {
     e.preventDefault();
-    console.log(this.props.isLoggedIn);
-    const showLogin = this.props.isLoggedIn ? false : true;
-    this.setState({
-      username: "",
-      showLogin
-    });
     this.props.handleSubmit(this.state.username);
   };
+  componentDidUpdate(prevProps, prevState) {
+    const showLogin = this.props.isLoggedIn ? false : true;
+    if (this.props.currentUser !== prevProps.currentUser) {
+      this.setState({
+        username: "",
+        showLogin
+      });
+    }
+  }
 }
 
 export default Nav;

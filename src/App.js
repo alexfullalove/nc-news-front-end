@@ -11,6 +11,7 @@ import { logIn } from "./api";
 class App extends Component {
   state = { isLoggedIn: false, currentUser: "" };
   render() {
+    console.log(this.state.isLoggedIn);
     return (
       <div className="App">
         <Nav
