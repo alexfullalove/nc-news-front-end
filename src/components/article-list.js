@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Router, Link } from "@reach/router";
 import { getArticles } from "../api";
+import SortBy from "./sort-by";
 
 class ArticleList extends Component {
   state = {
@@ -14,15 +15,7 @@ class ArticleList extends Component {
     return (
       <div className="article-list">
         <h1>{this.props.topic} Articles</h1>
-        <form className="sort-by">
-          <p>Sort By:</p>
-          <select>
-            <option value="created_at">Date</option>
-            <option value="comment_count">Comment Count</option>
-            <option value="votes">Votes</option>
-          </select>
-          <button>Sort</button>
-        </form>
+        <SortBy />
         <ul>
           {this.state.articles.map(article => {
             return (

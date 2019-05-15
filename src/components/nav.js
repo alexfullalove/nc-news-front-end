@@ -9,14 +9,7 @@ class Nav extends Component {
         <Link to="/">Home</Link> | <Link to="/topics">Topics</Link> |{" "}
         <Link to="/">Home</Link>
         {this.state.showLogin && (
-          <form
-            className="login-form"
-            onSubmit={e => {
-              e.preventDefault();
-              this.setState({ username: "", showLogin: false });
-              this.props.handleSubmit(this.state.username);
-            }}
-          >
+          <form className="login-form" onSubmit={this.handleLogIn}>
             <input
               onChange={this.handleChange}
               type="text"
@@ -25,8 +18,10 @@ class Nav extends Component {
             <button>Log in</button>
           </form>
         )}
-        {!this.state.showLogin && <p>{this.props.currentUser}</p>}
-        {!this.state.showLogin && (
+        {!this.state.showLogin && this.props.isLoggedIn && (
+          <p>{this.props.currentUser}</p>
+        )}
+        {!this.state.showLogin && this.props.isLoggedIn && (
           <button
             onClick={e => {
               this.setState({ showLogin: true });
@@ -41,6 +36,16 @@ class Nav extends Component {
   }
   handleChange = e => {
     this.setState({ username: e.target.value });
+  };
+  handleLogIn = e => {
+    e.preventDefault();
+    console.log(this.props.isLoggedIn);
+    const showLogin = this.props.isLoggedIn ? false : true;
+    this.setState({
+      username: "",
+      showLogin
+    });
+    this.props.handleSubmit(this.state.username);
   };
 }
 

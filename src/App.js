@@ -16,6 +16,7 @@ class App extends Component {
         <Nav
           handleSubmit={this.handleSubmit}
           currentUser={this.state.currentUser}
+          isLoggedIn={this.state.isLoggedIn}
           handleSignOut={this.handleSignOut}
         />
         <Header />
