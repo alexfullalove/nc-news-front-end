@@ -8,7 +8,9 @@ class AddComment extends Component {
   render() {
     return (
       <div className="comment-form">
-        <form />
+        <form>
+          <textarea />
+        </form>
       </div>
     );
   }
@@ -19,9 +21,7 @@ class AddComment extends Component {
     });
   }
   componentDidUpdate(prevProps, prevState) {
-    console.log(prevProps, this.props);
     if (this.props.isLoggedIn !== prevProps.isLoggedIn) {
-      // console.log(this.state);
       this.setState({ isLoggedIn: this.props.isLoggedIn });
     }
   }
