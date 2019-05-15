@@ -15,7 +15,7 @@ class ArticleList extends Component {
     return (
       <div className="article-list">
         <h1>{this.props.topic} Articles</h1>
-        <SortBy />
+        <SortBy handleSort={this.handleSort} />
         <ul>
           {this.state.articles.map(article => {
             return (
@@ -36,9 +36,22 @@ class ArticleList extends Component {
   }
   componentDidMount() {
     const { topic } = this.props;
-    getArticles({ topic }).then(articles =>
+    getArticles({ topic, sort_by: this.state.sortBy }).then(articles =>
       this.setState({ articles, loading: false })
     );
+  }
+  handleSort = sortBy => {
+    console.log(sortBy);
+    this.setState({ sortBy: sortBy });
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.sortBy !== this.state.sortBy) {
+      const { topic } = this.props;
+      getArticles({ topic, sort_by: this.state.sortBy }).then(articles =>
+        this.setState({ articles, loading: false })
+      );
+    }
   }
 }
 

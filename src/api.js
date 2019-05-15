@@ -2,6 +2,7 @@ import Axios from "axios";
 const url = "https://thawing-fortress-68943.herokuapp.com/api";
 
 const getArticles = params => {
+  console.log(params);
   return Axios.get(`${url}/articles`, { params }).then(
     ({ data: { articles } }) => articles
   );
