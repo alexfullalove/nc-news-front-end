@@ -11,7 +11,6 @@ import { logIn } from "./api";
 class App extends Component {
   state = { isLoggedIn: false, currentUser: "" };
   render() {
-    console.log(this.state.isLoggedIn);
     return (
       <div className="App">
         <Nav
@@ -23,7 +22,11 @@ class App extends Component {
         <Header />
         <Router>
           <ArticleList path="/" />
-          <ArticleCard path="/articles/:article_id" />
+          <ArticleCard
+            path="/articles/:article_id"
+            currentUser={this.state.currentUser}
+            isLoggedIn={this.state.isLoggedIn}
+          />
           <TopicList path="/topics" />
           <ArticleList path="/topics/:topic" />
         </Router>
@@ -33,6 +36,7 @@ class App extends Component {
   handleSubmit = username => {
     logIn(username).then(({ username }) => {
       if (username) {
+        console.log("logging in");
         this.setState({ isLoggedIn: true, currentUser: username });
       }
     });

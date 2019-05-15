@@ -41,7 +41,6 @@ class ArticleList extends Component {
     );
   }
   handleSort = sortBy => {
-    console.log(sortBy);
     this.setState({ sortBy: sortBy });
   };
 

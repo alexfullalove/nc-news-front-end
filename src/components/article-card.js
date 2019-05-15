@@ -3,7 +3,14 @@ import CommentList from "./comment-list";
 import { getSingleArticle, getComments } from "../api";
 
 class ArticleCard extends React.Component {
-  state = { article: [], loading: true, comments: [], showComments: false };
+  state = {
+    article: [],
+    loading: true,
+    comments: [],
+    showComments: false,
+    isLoggedIn: this.props.isLoggedIn,
+    currentUser: this.props.currentUser
+  };
   render() {
     if (this.state.loading) return <p>loading...</p>;
     return (
@@ -18,13 +25,18 @@ class ArticleCard extends React.Component {
         <button onClick={this.toggleComments}>Show / Hide comments</button>
         {this.state.showComments && (
           <ul className="comment-list">
-            <CommentList comments={this.state.comments} />
+            <CommentList
+              comments={this.state.comments}
+              currentUser={this.props.currentUser}
+              isLoggedIn={this.props.isLoggedIn}
+            />
           </ul>
         )}
         <p>Total comments: {this.state.article.comment_count}</p>
       </div>
     );
   }
+
   componentDidMount() {
     getSingleArticle(this.props.article_id).then(article =>
       this.setState({ article, loading: false })
