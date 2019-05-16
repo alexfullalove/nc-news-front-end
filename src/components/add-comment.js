@@ -3,7 +3,6 @@ import React, { Component } from "react";
 class AddComment extends Component {
   state = {
     author: "",
-    isLoggedIn: false,
     comment: ""
   };
   render() {
@@ -19,8 +18,8 @@ class AddComment extends Component {
             onChange={this.handleTypeComment}
             placeholder="type your comment here..."
           />
-          <button type="submit">Post</button>
-          <button type="button">Cancel</button>
+          {this.props.isLoggedIn && <button type="submit">Post</button>}
+          {this.props.isLoggedIn && <button type="button">Cancel</button>}
         </form>
       </div>
     );
