@@ -4,7 +4,8 @@ import {
   getSingleArticle,
   getComments,
   postComment,
-  deleteComment
+  deleteComment,
+  patchArticleVotes
 } from "../api";
 
 class ArticleCard extends React.Component {
@@ -14,7 +15,9 @@ class ArticleCard extends React.Component {
     comments: [],
     showComments: false,
     isLoggedIn: this.props.isLoggedIn,
-    currentUser: this.props.currentUser
+    currentUser: this.props.currentUser,
+    votes: 0,
+    currentVote: 0
   };
   render() {
     if (this.state.loading) return <p>loading...</p>;
@@ -26,7 +29,31 @@ class ArticleCard extends React.Component {
         <h5>Article:</h5>
         <p>{this.state.article.body}</p>
         <p>Date: {this.state.article.created_at}</p>
-        <p>Votes: {this.state.article.votes}</p>
+        <p>Votes: {this.state.article.votes + this.state.votes}</p>
+        {this.props.isLoggedIn && (
+          <button
+            disabled={this.state.currentVote === 1}
+            onClick={e =>
+              this.state.currentVote === -1
+                ? this.handleVote(e, 2)
+                : this.handleVote(e, 1)
+            }
+          >
+            like
+          </button>
+        )}
+        {this.props.isLoggedIn && (
+          <button
+            disabled={this.state.currentVote === -1}
+            onClick={e =>
+              this.state.currentVote === -1
+                ? this.handleVote(e, -2)
+                : this.handleVote(e, -1)
+            }
+          >
+            Dislike
+          </button>
+        )}
         <button onClick={this.toggleComments}>Show / Hide comments</button>
         {this.state.showComments && (
           <ul className="comment-list">
@@ -59,6 +86,15 @@ class ArticleCard extends React.Component {
       comments: this.state.comments.filter(comment => {
         return comment.comment_id !== comment_id;
       })
+    });
+  };
+
+  handleVote = (e, direction) => {
+    patchArticleVotes(this.state.article.article_id, direction);
+    this.setState({ currentVote: this.state.currentVote + direction });
+    this.setState(prevState => {
+      const newVote = prevState.votes + direction;
+      return { votes: newVote };
     });
   };
 

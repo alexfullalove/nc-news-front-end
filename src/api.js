@@ -40,10 +40,16 @@ const postComment = (newComment, article_id) => {
 };
 
 const deleteComment = comment_id => {
-  console.log(comment_id, "<---- comment to delete");
   return Axios.delete(`${url}/comments/${comment_id}`).catch(
     ({ message }) => message
   );
+};
+
+const patchArticleVotes = (article_id, direction) => {
+  const patchVote = { inc_votes: direction };
+  return Axios.patch(`${url}/articles/${article_id}`, patchVote)
+    .then(({ data: { votes } }) => votes)
+    .catch(({ message }) => message);
 };
 
 export {
@@ -53,5 +59,6 @@ export {
   getTopics,
   logIn,
   postComment,
-  deleteComment
+  deleteComment,
+  patchArticleVotes
 };
