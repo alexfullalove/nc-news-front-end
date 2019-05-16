@@ -14,8 +14,6 @@ class ArticleCard extends React.Component {
     loading: true,
     comments: [],
     showComments: false,
-    // isLoggedIn: this.props.isLoggedIn,
-    // currentUser: this.props.currentUser,
     votes: 0,
     currentVote: 0
   };
