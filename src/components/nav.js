@@ -1,20 +1,22 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 import ResponsiveMenu from "react-responsive-navbar";
+import { IoMdClose, IoMdMenu } from "react-icons/io";
 
 class Nav extends Component {
   state = { username: "", showLogin: true };
   render() {
     return (
       <ResponsiveMenu
-        menuOpenButton={<div className="open-menue">|||</div>}
-        menuCloseButton={<div className="close-menu">X</div>}
+        menuOpenButton={<IoMdMenu />}
+        menuCloseButton={<IoMdClose />}
         changeMenuOn="768px"
         largeMenuClassName="large-menu-classname"
         smallMenuClassName="small-menu-classname"
         menu={
           <nav className="nav">
-            <Link to="/">Home</Link> | <Link to="/topics">Topics</Link> |
+            <Link to="/">Home</Link>
+            <Link to="/topics">Topics</Link>
             {this.state.showLogin && (
               <form className="login-form" onSubmit={this.handleLogIn}>
                 <input
