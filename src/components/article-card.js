@@ -39,7 +39,6 @@ class ArticleCard extends React.Component {
             />
           </ul>
         )}
-        <p>Total comments: {this.state.article.comment_count}</p>
       </div>
     );
   }
@@ -56,6 +55,11 @@ class ArticleCard extends React.Component {
   };
   handleDeleteComment = (e, comment_id) => {
     deleteComment(comment_id);
+    this.setState({
+      comments: this.state.comments.filter(comment => {
+        return comment.comment_id !== comment_id;
+      })
+    });
   };
 
   componentDidMount() {

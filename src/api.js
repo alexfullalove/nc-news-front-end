@@ -41,6 +41,9 @@ const postComment = (newComment, article_id) => {
 
 const deleteComment = comment_id => {
   console.log(comment_id, "<---- comment to delete");
+  return Axios.delete(`${url}/comments/${comment_id}`).catch(
+    ({ message }) => message
+  );
 };
 
 export {
