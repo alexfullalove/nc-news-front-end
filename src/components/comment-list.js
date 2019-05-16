@@ -24,9 +24,9 @@ class CommentList extends Component {
         </button>
         {this.state.showAddComment && (
           <AddComment
-            isLoggedIn={this.state.isLoggedIn}
-            currentUser={this.state.currentUser}
-            showAddComment={this.state.showAddComment}
+            isLoggedIn={this.props.isLoggedIn}
+            currentUser={this.props.currentUser}
+            showAddComment={this.props.showAddComment}
             handlePostComment={this.props.handlePostComment}
           />
         )}
@@ -34,6 +34,7 @@ class CommentList extends Component {
           return (
             <li key={comment.comment_id}>
               <CommentCard
+                isLoggedIn={this.props.isLoggedIn}
                 comment={comment}
                 currentUser={this.props.currentUser}
                 handleDeleteComment={this.props.handleDeleteComment}

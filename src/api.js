@@ -52,6 +52,13 @@ const patchArticleVotes = (article_id, direction) => {
     .catch(({ message }) => message);
 };
 
+const patchCommentVotes = (comment_id, direction) => {
+  const patchVote = { inc_votes: direction };
+  return Axios.patch(`${url}/comments/${comment_id}`, patchVote)
+    .then(({ data: { votes } }) => votes)
+    .catch(({ message }) => message);
+};
+
 export {
   getArticles,
   getSingleArticle,
@@ -60,5 +67,6 @@ export {
   logIn,
   postComment,
   deleteComment,
-  patchArticleVotes
+  patchArticleVotes,
+  patchCommentVotes
 };

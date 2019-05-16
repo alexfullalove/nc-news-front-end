@@ -46,7 +46,7 @@ class ArticleCard extends React.Component {
           <button
             disabled={this.state.currentVote === -1}
             onClick={e =>
-              this.state.currentVote === -1
+              this.state.currentVote === 1
                 ? this.handleVote(e, -2)
                 : this.handleVote(e, -1)
             }
@@ -54,18 +54,15 @@ class ArticleCard extends React.Component {
             Dislike
           </button>
         )}
-        <button onClick={this.toggleComments}>Show / Hide comments</button>
-        {this.state.showComments && (
-          <ul className="comment-list">
-            <CommentList
-              comments={this.state.comments}
-              currentUser={this.props.currentUser}
-              isLoggedIn={this.props.isLoggedIn}
-              handlePostComment={this.handlePostComment}
-              handleDeleteComment={this.handleDeleteComment}
-            />
-          </ul>
-        )}
+        <ul className="comment-list">
+          <CommentList
+            comments={this.state.comments}
+            currentUser={this.props.currentUser}
+            isLoggedIn={this.props.isLoggedIn}
+            handlePostComment={this.handlePostComment}
+            handleDeleteComment={this.handleDeleteComment}
+          />
+        </ul>
       </div>
     );
   }
@@ -106,11 +103,6 @@ class ArticleCard extends React.Component {
       this.setState({ comments })
     );
   }
-  toggleComments = () => {
-    this.setState(prevState => {
-      return { showComments: !prevState.showComments };
-    });
-  };
 }
 
 export default ArticleCard;
