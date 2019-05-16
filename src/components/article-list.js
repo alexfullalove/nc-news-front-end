@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router, Link } from "@reach/router";
+import { Link } from "@reach/router";
 import { getArticles } from "../api";
 import SortBy from "./sort-by";
 

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { getArticles } from "../api";
 
 class SortBy extends Component {
   state = { sort: "created_at" };

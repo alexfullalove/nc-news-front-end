@@ -4,7 +4,7 @@ import Header from "./components/header";
 import Nav from "./components/nav";
 import ArticleList from "./components/article-list";
 import ArticleCard from "./components/article-card";
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
 import TopicList from "./components/topic-list";
 import { logIn } from "./api";
 
@@ -36,7 +36,6 @@ class App extends Component {
   handleSubmit = username => {
     logIn(username).then(({ username }) => {
       if (username) {
-        console.log("logging in");
         this.setState({ isLoggedIn: true, currentUser: username });
       }
     });
