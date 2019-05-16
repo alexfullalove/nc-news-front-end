@@ -39,11 +39,16 @@ const postComment = (newComment, article_id) => {
     .catch(({ message }) => message);
 };
 
+const deleteComment = comment_id => {
+  console.log(comment_id, "<---- comment to delete");
+};
+
 export {
   getArticles,
   getSingleArticle,
   getComments,
   getTopics,
   logIn,
-  postComment
+  postComment,
+  deleteComment
 };

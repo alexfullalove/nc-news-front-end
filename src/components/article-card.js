@@ -1,6 +1,11 @@
 import React from "react";
 import CommentList from "./comment-list";
-import { getSingleArticle, getComments, postComment } from "../api";
+import {
+  getSingleArticle,
+  getComments,
+  postComment,
+  deleteComment
+} from "../api";
 
 class ArticleCard extends React.Component {
   state = {
@@ -30,6 +35,7 @@ class ArticleCard extends React.Component {
               currentUser={this.props.currentUser}
               isLoggedIn={this.props.isLoggedIn}
               handlePostComment={this.handlePostComment}
+              handleDeleteComment={this.handleDeleteComment}
             />
           </ul>
         )}
@@ -47,6 +53,9 @@ class ArticleCard extends React.Component {
     };
     postComment(newComment, this.props.article_id);
     this.setState({ comments: [newComment, ...this.state.comments] });
+  };
+  handleDeleteComment = (e, comment_id) => {
+    deleteComment(comment_id);
   };
 
   componentDidMount() {

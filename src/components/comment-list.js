@@ -33,7 +33,11 @@ class CommentList extends Component {
         {this.props.comments.map(comment => {
           return (
             <li key={comment.comment_id}>
-              <CommentCard comment={comment} />
+              <CommentCard
+                comment={comment}
+                currentUser={this.props.currentUser}
+                handleDeleteComment={this.props.handleDeleteComment}
+              />
             </li>
           );
         })}
