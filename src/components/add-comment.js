@@ -19,8 +19,8 @@ class AddComment extends Component {
             onChange={this.handleTypeComment}
             placeholder="type your comment here..."
           />
-          <button>Post</button>
-          <button>Cancel</button>
+          <button type="submit">Post</button>
+          <button type="button">Cancel</button>
         </form>
       </div>
     );
