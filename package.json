@@ -10,6 +10,7 @@
     "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.8.6",
     "react-infinite-scroller": "^1.2.4",
+    "react-responsive-navbar": "^1.0.11",
     "react-scripts": "3.0.1"
   },
   "scripts": {
