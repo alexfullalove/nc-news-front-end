@@ -1,6 +1,6 @@
 import React from "react";
 import CommentList from "./comment-list";
-import { getSingleArticle, getComments } from "../api";
+import { getSingleArticle, getComments, postComment } from "../api";
 
 class ArticleCard extends React.Component {
   state = {
@@ -29,6 +29,7 @@ class ArticleCard extends React.Component {
               comments={this.state.comments}
               currentUser={this.props.currentUser}
               isLoggedIn={this.props.isLoggedIn}
+              handlePostComment={this.handlePostComment}
             />
           </ul>
         )}
@@ -36,6 +37,17 @@ class ArticleCard extends React.Component {
       </div>
     );
   }
+  handlePostComment = comment => {
+    const newComment = {
+      author: this.props.currentUser,
+      body: comment,
+      created_at: Date.now(),
+      votes: 0,
+      comment_id: Date.now()
+    };
+    postComment(newComment, this.props.article_id);
+    this.setState({ comments: [newComment, ...this.state.comments] });
+  };
 
   componentDidMount() {
     getSingleArticle(this.props.article_id).then(article =>

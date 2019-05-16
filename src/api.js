@@ -29,4 +29,21 @@ const logIn = username => {
     .catch(({ message }) => message);
 };
 
-export { getArticles, getSingleArticle, getComments, getTopics, logIn };
+const postComment = (newComment, article_id) => {
+  const commentToPost = {
+    username: newComment.author,
+    body: newComment.body
+  };
+  return Axios.post(`${url}/articles/${article_id}/comments`, commentToPost)
+    .then(({ data: { comment } }) => comment)
+    .catch(({ message }) => message);
+};
+
+export {
+  getArticles,
+  getSingleArticle,
+  getComments,
+  getTopics,
+  logIn,
+  postComment
+};
