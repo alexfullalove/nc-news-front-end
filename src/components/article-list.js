@@ -4,12 +4,15 @@ import { getArticles } from "../api";
 import SortBy from "./sort-by";
 import { IoMdSync } from "react-icons/io";
 import "../Article-list.css";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 class ArticleList extends Component {
   state = {
     articles: [],
     loading: true,
-    sortBy: ""
+    sortBy: "",
+    hasMore: true,
+    page: 1
   };
 
   render() {
@@ -24,27 +27,40 @@ class ArticleList extends Component {
         <h1 id="articles-title">{this.props.topic} Articles</h1>
         <SortBy handleSort={this.handleSort} />
         <ul>
-          {this.state.articles.map(article => {
-            return (
-              <li key={article.article_id} article={article}>
-                <Link to={`/articles/${article.article_id}`}>
-                  <h3>{article.title}</h3>
-                </Link>
-                <p>Author: {article.author}</p>
-                <p>Comments: {article.comment_count}</p>
-                <p>Votes: {article.votes}</p>
-                <p>Created: {article.created_at}</p>
-              </li>
-            );
-          })}
+          <InfiniteScroll
+            dataLength={this.state.articles.length}
+            next={this.fetchMoreData}
+            hasMore={this.state.hasMore}
+            loader={<h4>Loading...</h4>}
+          >
+            {this.state.articles.map(article => {
+              return (
+                <li key={article.article_id} article={article}>
+                  <Link to={`/articles/${article.article_id}`}>
+                    <h3>{article.title}</h3>
+                  </Link>
+                  <p>Author: {article.author}</p>
+                  <p>Comments: {article.comment_count}</p>
+                  <p>Votes: {article.votes}</p>
+                  <p>Created: {article.created_at}</p>
+                </li>
+              );
+            })}
+          </InfiniteScroll>
         </ul>
       </div>
     );
   }
   componentDidMount() {
     const { topic } = this.props;
-    getArticles({ topic, sort_by: this.state.sortBy })
-      .then(articles => this.setState({ articles, loading: false }))
+    getArticles({ topic, sort_by: this.state.sortBy, page: this.state.page })
+      .then(articles =>
+        this.setState({
+          articles,
+          loading: false,
+          page: this.state.page + 1
+        })
+      )
       .catch(({ response: { data, status } }) => {
         this.setState({ loading: false });
         navigate("/error", {
@@ -64,6 +80,21 @@ class ArticleList extends Component {
       );
     }
   }
+
+  fetchMoreData = () => {
+    const { topic } = this.props;
+    getArticles({ topic, sort_by: this.state.sortBy, page: this.state.page })
+      .then(articles =>
+        this.setState({
+          articles: [...this.state.articles, ...articles],
+          loading: false,
+          page: this.state.page + 1
+        })
+      )
+      .catch(({ response: { data, status } }) => {
+        this.setState({ loading: false, hasMore: false });
+      });
+  };
 }
 
 export default ArticleList;
