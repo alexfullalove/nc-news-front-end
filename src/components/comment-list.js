@@ -30,6 +30,7 @@ class CommentList extends Component {
             handlePostComment={this.props.handlePostComment}
           />
         )}
+
         {this.props.comments.map(comment => {
           return (
             <li key={comment.comment_id}>

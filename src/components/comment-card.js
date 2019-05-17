@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { patchCommentVotes } from "../api";
+import "../Comment.css";
 
 class CommentCard extends Component {
   state = { currentVote: 0 };
   render() {
     console.log(this.props);
     return (
-      <div>
+      <div className="comment">
         <h4>Author:</h4>
         <p>{this.props.comment.author}</p>
         <h5>Comment: </h5>

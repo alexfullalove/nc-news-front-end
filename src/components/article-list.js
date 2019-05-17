@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import { getArticles } from "../api";
 import SortBy from "./sort-by";
+import { IoMdSync } from "react-icons/io";
+import "../Article-list.css";
 
 class ArticleList extends Component {
   state = {
@@ -11,10 +13,15 @@ class ArticleList extends Component {
   };
 
   render() {
-    if (this.state.loading) return <p>loading...</p>;
+    if (this.state.loading)
+      return (
+        <p className="loading">
+          <IoMdSync />
+        </p>
+      );
     return (
       <div className="article-list">
-        <h1>{this.props.topic} Articles</h1>
+        <h1 id="articles-title">{this.props.topic} Articles</h1>
         <SortBy handleSort={this.handleSort} />
         <ul>
           {this.state.articles.map(article => {
@@ -36,9 +43,14 @@ class ArticleList extends Component {
   }
   componentDidMount() {
     const { topic } = this.props;
-    getArticles({ topic, sort_by: this.state.sortBy }).then(articles =>
-      this.setState({ articles, loading: false })
-    );
+    getArticles({ topic, sort_by: this.state.sortBy })
+      .then(articles => this.setState({ articles, loading: false }))
+      .catch(({ response: { data, status } }) => {
+        this.setState({ loading: false });
+        navigate("/error", {
+          state: { from: "articles", message: data.message, status }
+        });
+      });
   }
   handleSort = sortBy => {
     this.setState({ sortBy: sortBy });

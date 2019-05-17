@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { TiArrowShuffle } from "react-icons/ti";
+import "../Sortby.css";
 
 class SortBy extends Component {
   state = { sort: "created_at" };
@@ -13,12 +15,16 @@ class SortBy extends Component {
           }}
         >
           <p>Sort By:</p>
-          <select onChange={this.handleSelectChange}>
-            <option value="created_at">Date</option>
-            <option value="comment_count">Comment Count</option>
-            <option value="votes">Votes</option>
-          </select>
-          <button>Sort</button>
+          <div>
+            <select className="selector" onChange={this.handleSelectChange}>
+              <option value="created_at">Date</option>
+              <option value="comment_count">Comment Count</option>
+              <option value="votes">Votes</option>
+            </select>
+          </div>
+          <button>
+            <TiArrowShuffle />
+          </button>
         </form>
       </div>
     );

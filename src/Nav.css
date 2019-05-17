@@ -9,6 +9,7 @@
   text-align: left;
   display: flex;
   justify-content: space-between;
+  transition: 1s;
 }
 
 .nav button {
@@ -36,6 +37,10 @@
   border: none;
   border-bottom: solid white 1px;
   padding: 10px 24px;
+  font-size: 1em;
+  font-weight: 600;
+  text-align: center;
+  color: white;
 }
 
 .nav input:hover {
@@ -75,9 +80,6 @@
     margin-bottom: 0.9vw;
     margin-top: 1vw;
     padding: 5px 10px;
-    font-size: 1em;
-    font-weight: 600;
-    text-align: center;
   }
 
   .nav input::placeholder {

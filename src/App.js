@@ -7,6 +7,7 @@ import ArticleCard from "./components/article-card";
 import { Router } from "@reach/router";
 import TopicList from "./components/topic-list";
 import { logIn } from "./api";
+import ErrorPage from "./components/ErrorPage";
 
 class App extends Component {
   state = { isLoggedIn: false, currentUser: "" };
@@ -29,6 +30,10 @@ class App extends Component {
           />
           <TopicList path="/topics" />
           <ArticleList path="/topics/:topic" />
+          <ErrorPage
+            default
+            error={{ message: "page can not be found", status: 404 }}
+          />
         </Router>
       </div>
     );

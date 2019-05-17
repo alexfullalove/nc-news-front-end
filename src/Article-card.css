@@ -1,0 +1,56 @@
+.article-card {
+  width: 60%;
+  margin: auto;
+  margin-top: 5vh;
+  padding: 2vw;
+  background-color: rgb(153, 153, 153);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.comment-list li {
+  list-style: none;
+  background-color: rgb(204, 204, 204);
+  margin-top: 2vh;
+}
+
+.comment-list li:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.comment-list ul {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#like-button {
+  background-color: rgb(166, 231, 166);
+  border: none;
+  border-radius: 4px;
+  margin: 0.5vw;
+  height: 4vh;
+  width: 5%;
+}
+#dislike-button {
+  background-color: rgb(231, 166, 166);
+  border: none;
+  border-radius: 4px;
+  margin: 0.5vw;
+  height: 4vh;
+  width: 5%;
+}
+
+@media only screen and (max-width: 768px) {
+  .article-card {
+    width: 85%;
+    text-align: center;
+  }
+
+  #like-button {
+    width: 60%;
+  }
+
+  #dislike-button {
+    width: 60%;
+  }
+}

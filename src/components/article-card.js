@@ -1,5 +1,6 @@
 import React from "react";
 import CommentList from "./comment-list";
+import { navigate } from "@reach/router";
 import {
   getSingleArticle,
   getComments,
@@ -7,6 +8,8 @@ import {
   deleteComment,
   patchArticleVotes
 } from "../api";
+import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
+import "../Article-card.css";
 
 class ArticleCard extends React.Component {
   state = {
@@ -30,6 +33,7 @@ class ArticleCard extends React.Component {
         <p>Votes: {this.state.article.votes + this.state.votes}</p>
         {this.props.isLoggedIn && (
           <button
+            id="like-button"
             disabled={this.state.currentVote === 1}
             onClick={e =>
               this.state.currentVote === -1
@@ -37,11 +41,12 @@ class ArticleCard extends React.Component {
                 : this.handleVote(e, 1)
             }
           >
-            like
+            <FaThumbsUp />
           </button>
         )}
         {this.props.isLoggedIn && (
           <button
+            id="dislike-button"
             disabled={this.state.currentVote === -1}
             onClick={e =>
               this.state.currentVote === 1
@@ -49,7 +54,7 @@ class ArticleCard extends React.Component {
                 : this.handleVote(e, -1)
             }
           >
-            Dislike
+            <FaThumbsDown />
           </button>
         )}
         <ul className="comment-list">
@@ -94,12 +99,23 @@ class ArticleCard extends React.Component {
   };
 
   componentDidMount() {
-    getSingleArticle(this.props.article_id).then(article =>
-      this.setState({ article, loading: false })
-    );
-    getComments(this.props.article_id).then(comments =>
-      this.setState({ comments })
-    );
+    getSingleArticle(this.props.article_id)
+      .then(article => {
+        console.log(article);
+        this.setState({ article, loading: false });
+      })
+      .then(
+        getComments(this.props.article_id).then(comments =>
+          this.setState({ comments })
+        )
+      )
+      .catch(({ response: { data, status } }) => {
+        console.log("<----- IN DA CATCH");
+        this.setState({ loading: false });
+        navigate("/error", {
+          state: { from: "articles", message: data.message, status }
+        });
+      });
   }
 }
 
