@@ -1,5 +1,5 @@
 .header {
-  background-color: #282c34;
+  background-color: #484848;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
@@ -10,8 +10,4 @@
 #title {
   margin: auto;
   font-weight: 600;
-}
-
-.nav {
-  background-color: #576c85;
 }

@@ -2,40 +2,57 @@ import React, { Component } from "react";
 import { Link } from "@reach/router";
 import ResponsiveMenu from "react-responsive-navbar";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
+import { FaHome, FaFolder, FaUser } from "react-icons/fa";
+import "../Nav.css";
 
 class Nav extends Component {
   state = { username: "", showLogin: true };
   render() {
     return (
       <ResponsiveMenu
-        menuOpenButton={<IoMdMenu />}
-        menuCloseButton={<IoMdClose />}
+        menuOpenButton={<IoMdMenu id="hamburger" />}
+        menuCloseButton={<IoMdClose id="close-menu" />}
         changeMenuOn="768px"
         largeMenuClassName="large-menu-classname"
         smallMenuClassName="small-menu-classname"
         menu={
           <nav className="nav">
-            <Link to="/">Home</Link>
-            <Link to="/topics">Topics</Link>
+            <div>
+              <button>
+                <Link to="/">
+                  <FaHome /> Home
+                </Link>
+              </button>
+              <button>
+                <Link to="/topics">
+                  <FaFolder /> Topics
+                </Link>
+              </button>
+            </div>
             {this.state.showLogin && (
               <form className="login-form" onSubmit={this.handleLogIn}>
-                <input
-                  onChange={this.handleChange}
-                  type="text"
-                  value={this.state.username}
-                />
-                <button>Log in</button>
+                <div id="login">
+                  <input
+                    onChange={this.handleChange}
+                    type="text"
+                    value={this.state.username}
+                    placeholder="enter a valid username"
+                  />
+                  <button>
+                    <FaUser /> Log in
+                  </button>
+                </div>
               </form>
             )}
-            {!this.state.showLogin && <p>{this.props.currentUser}</p>}
             {!this.state.showLogin && (
               <button
+                className="signout"
                 onClick={e => {
                   this.setState({ showLogin: true });
                   this.props.handleSignOut();
                 }}
               >
-                Sign out
+                Sign out {this.props.currentUser}
               </button>
             )}
           </nav>
