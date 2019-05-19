@@ -1,6 +1,7 @@
 import CommentCard from "./comment-card";
 import AddComment from "./add-comment";
 import React, { Component } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 class CommentList extends Component {
   state = {
@@ -30,19 +31,25 @@ class CommentList extends Component {
             handlePostComment={this.props.handlePostComment}
           />
         )}
-
-        {this.props.comments.map(comment => {
-          return (
-            <li key={comment.comment_id}>
-              <CommentCard
-                isLoggedIn={this.props.isLoggedIn}
-                comment={comment}
-                currentUser={this.props.currentUser}
-                handleDeleteComment={this.props.handleDeleteComment}
-              />
-            </li>
-          );
-        })}
+        <InfiniteScroll
+          dataLength={this.props.comments.length}
+          next={this.props.fetchMoreData}
+          hasMore={this.props.hasMore}
+          loader={<h4>Loading...</h4>}
+        >
+          {this.props.comments.map(comment => {
+            return (
+              <li key={comment.comment_id}>
+                <CommentCard
+                  isLoggedIn={this.props.isLoggedIn}
+                  comment={comment}
+                  currentUser={this.props.currentUser}
+                  handleDeleteComment={this.props.handleDeleteComment}
+                />
+              </li>
+            );
+          })}
+        </InfiniteScroll>
       </div>
     );
   }

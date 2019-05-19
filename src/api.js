@@ -13,10 +13,10 @@ const getSingleArticle = article_id => {
   );
 };
 
-const getComments = article_id => {
-  return Axios.get(`${url}/articles/${article_id}/comments`).then(
-    ({ data: { comments } }) => comments
-  );
+const getComments = (article_id, page) => {
+  return Axios.get(`${url}/articles/${article_id}/comments`, {
+    params: { page }
+  }).then(({ data: { comments } }) => comments);
 };
 
 const getTopics = () => {

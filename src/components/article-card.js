@@ -18,7 +18,9 @@ class ArticleCard extends React.Component {
     comments: [],
     showComments: false,
     votes: 0,
-    currentVote: 0
+    currentVote: 0,
+    hasMore: true,
+    page: 1
   };
   render() {
     if (this.state.loading) return <p>loading...</p>;
@@ -59,6 +61,8 @@ class ArticleCard extends React.Component {
         )}
         <ul className="comment-list">
           <CommentList
+            hasMore={this.state.hasMore}
+            fetchMoreData={this.fetchMoreData}
             comments={this.state.comments}
             currentUser={this.props.currentUser}
             isLoggedIn={this.props.isLoggedIn}
@@ -102,21 +106,34 @@ class ArticleCard extends React.Component {
     getSingleArticle(this.props.article_id)
       .then(article => {
         console.log(article);
-        this.setState({ article, loading: false });
+        this.setState({ article, loading: false, page: this.state.page + 1 });
       })
       .then(
-        getComments(this.props.article_id).then(comments =>
+        getComments(this.props.article_id, this.state.page).then(comments =>
           this.setState({ comments })
         )
       )
       .catch(({ response: { data, status } }) => {
-        console.log("<----- IN DA CATCH");
         this.setState({ loading: false });
         navigate("/error", {
           state: { from: "articles", message: data.message, status }
         });
       });
   }
+
+  fetchMoreData = () => {
+    getComments(this.props.article_id, this.state.page)
+      .then(comments =>
+        this.setState({
+          comments: [...this.state.comments, ...comments],
+          loading: false,
+          page: this.state.page + 1
+        })
+      )
+      .catch(({ response: { data, status } }) => {
+        this.setState({ loading: false, hasMore: false });
+      });
+  };
 }
 
 export default ArticleCard;

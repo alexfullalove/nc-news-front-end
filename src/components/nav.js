@@ -17,15 +17,15 @@ class Nav extends Component {
         smallMenuClassName="small-menu-classname"
         menu={
           <nav className="nav">
-            <div>
+            <div className="navbuttons">
               <button>
                 <Link to="/">
-                  <FaHome /> Home
+                  <FaHome /> HOME
                 </Link>
               </button>
               <button>
                 <Link to="/topics">
-                  <FaFolder /> Topics
+                  <FaFolder /> TOPICS
                 </Link>
               </button>
             </div>
@@ -36,10 +36,10 @@ class Nav extends Component {
                     onChange={this.handleChange}
                     type="text"
                     value={this.state.username}
-                    placeholder="enter a valid username"
+                    placeholder="ENTER A VALID USER"
                   />
                   <button>
-                    <FaUser /> Log in
+                    <FaUser /> SIGN IN
                   </button>
                 </div>
               </form>
@@ -52,7 +52,7 @@ class Nav extends Component {
                   this.props.handleSignOut();
                 }}
               >
-                Sign out {this.props.currentUser}
+                SIGN OUT {this.props.currentUser}
               </button>
             )}
           </nav>

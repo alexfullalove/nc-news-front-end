@@ -1,26 +1,29 @@
 .sort-by {
   text-align: center;
   font-size: 1.5em;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .selector {
+  opacity: 0.7;
   text-indent: 45%;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.5em;
-  background-color: #f8f8f8;
+  background-color: #ffffff;
   border: none;
   width: 30%;
   height: 5vh;
 }
 
 .sort-by button {
-  background-color: lightblue;
-  margin: 2vw;
-  border: none;
+  opacity: 0.7;
+  background-color: #ffffff;
+  margin: 1.5vw;
+  margin-bottom: 0;
+  border: solid black 1.5px;
   height: 5vh;
   width: 30%;
-  border-radius: 2px;
+  border-radius: 4px;
   padding: 10px 24px;
   font-size: 0.7em;
   font-weight: 600;
@@ -28,23 +31,28 @@
 }
 
 .sort-by button:hover {
+  transition: 0.5s;
+  opacity: 1;
+  background-color: #f6e770;
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 .sort-by select:hover {
+  transition: 0.5s;
+  opacity: 1;
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 @media only screen and (max-width: 768px) {
   .sort-by select {
-    width: 60%;
+    width: 35%;
     height: 5vh;
   }
 
   .sort-by button {
     height: 5vh;
-    width: 60%;
+    width: 35%;
   }
 }

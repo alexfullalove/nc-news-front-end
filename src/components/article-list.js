@@ -36,13 +36,15 @@ class ArticleList extends Component {
             {this.state.articles.map(article => {
               return (
                 <li key={article.article_id} article={article}>
-                  <Link to={`/articles/${article.article_id}`}>
-                    <h3>{article.title}</h3>
-                  </Link>
+                  <h3>{article.title}</h3>
                   <p>Author: {article.author}</p>
                   <p>Comments: {article.comment_count}</p>
                   <p>Votes: {article.votes}</p>
                   <p>Created: {article.created_at}</p>
+                  <Link to={`/articles/${article.article_id}`}>
+                    <button className="readme">READ</button>
+                  </Link>
+                  <p className="underline">_______________</p>
                 </li>
               );
             })}

@@ -17,9 +17,9 @@ class SortBy extends Component {
           <p>Sort By:</p>
           <div>
             <select className="selector" onChange={this.handleSelectChange}>
-              <option value="created_at">Date</option>
-              <option value="comment_count">Comment Count</option>
-              <option value="votes">Votes</option>
+              <option value="created_at">DATE</option>
+              <option value="comment_count">COMMENTS</option>
+              <option value="votes">VOTES</option>
             </select>
           </div>
           <button>
