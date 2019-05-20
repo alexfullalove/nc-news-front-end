@@ -10,7 +10,7 @@ import { logIn } from "./api";
 import ErrorPage from "./components/ErrorPage";
 
 class App extends Component {
-  state = { isLoggedIn: false, currentUser: "" };
+  state = { isLoggedIn: false, currentUser: "", invalidUser: false };
   render() {
     return (
       <div className="App">
@@ -19,6 +19,7 @@ class App extends Component {
           currentUser={this.state.currentUser}
           isLoggedIn={this.state.isLoggedIn}
           handleSignOut={this.handleSignOut}
+          invalidUser={this.state.invalidUser}
         />
         <Header />
         <Router>
@@ -42,11 +43,11 @@ class App extends Component {
     logIn(username).then(({ username }) => {
       if (username) {
         this.setState({ isLoggedIn: true, currentUser: username });
-      }
+      } else this.setState({ invalidUser: true });
     });
   };
   handleSignOut = () => {
-    this.setState({ isLoggedIn: false, currentUser: "" });
+    this.setState({ isLoggedIn: false, currentUser: "", invalidUser: false });
   };
 }
 

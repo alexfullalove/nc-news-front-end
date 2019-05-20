@@ -1,0 +1,11 @@
+.topic-list {
+  margin: auto;
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .topic-list {
+    text-align: center;
+    width: 95%;
+  }
+}

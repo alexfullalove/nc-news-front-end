@@ -32,6 +32,9 @@ class Nav extends Component {
             {this.state.showLogin && (
               <form className="login-form" onSubmit={this.handleLogIn}>
                 <div id="login">
+                  {this.props.invalidUser && (
+                    <p id="invalid">* this username is invalid</p>
+                  )}
                   <input
                     onChange={this.handleChange}
                     type="text"
