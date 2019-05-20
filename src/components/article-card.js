@@ -8,8 +8,13 @@ import {
   deleteComment,
   patchArticleVotes
 } from "../api";
-import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import "../Article-card.css";
+import {
+  FaPencilAlt,
+  FaRegCalendarAlt,
+  FaRegHeart,
+  FaFolder
+} from "react-icons/fa";
 
 class ArticleCard extends React.Component {
   state = {
@@ -26,12 +31,19 @@ class ArticleCard extends React.Component {
     return (
       <div className="article-card">
         <h1>{this.state.article.title}</h1>
-        <h3>Author: {this.state.article.author}</h3>
-        <h4>Topic: {this.state.article.topic}</h4>
-        <h5>Article:</h5>
+        <h3>
+          <FaPencilAlt /> {this.state.article.author}
+        </h3>
+        <h4>
+          <FaFolder /> {this.state.article.topic}
+        </h4>
         <p>{this.state.article.body}</p>
-        <p>Date: {this.state.article.created_at}</p>
-        <p>Votes: {this.state.article.votes + this.state.votes}</p>
+        <p>
+          <FaRegCalendarAlt /> {this.state.article.created_at}
+        </p>
+        <p>
+          <FaRegHeart /> {this.state.article.votes + this.state.votes}
+        </p>
         {this.props.isLoggedIn && (
           <button
             id="like-button"
@@ -42,7 +54,7 @@ class ArticleCard extends React.Component {
                 : this.handleVote(e, 1)
             }
           >
-            <FaThumbsUp />
+            LIKE
           </button>
         )}
         {this.props.isLoggedIn && (
@@ -55,7 +67,7 @@ class ArticleCard extends React.Component {
                 : this.handleVote(e, -1)
             }
           >
-            <FaThumbsDown />
+            DISLIKE
           </button>
         )}
         <ul className="comment-list">
@@ -103,7 +115,6 @@ class ArticleCard extends React.Component {
   componentDidMount() {
     getSingleArticle(this.props.article_id)
       .then(article => {
-        console.log(article);
         this.setState({ article, loading: false, page: this.state.page + 1 });
       })
       .then(

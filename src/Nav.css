@@ -78,7 +78,7 @@
 }
 
 button.signout {
-  padding: 0;
+  padding: 1vh;
 }
 
 @media only screen and (max-width: 768px) {

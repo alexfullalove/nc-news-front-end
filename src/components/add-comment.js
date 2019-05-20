@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "../Addcomment.css";
 
 class AddComment extends Component {
   state = {
@@ -16,23 +17,31 @@ class AddComment extends Component {
           }}
         >
           <textarea
+            id="text-area"
             onChange={this.handleTypeComment}
             placeholder="type your comment here..."
           />
-          {this.props.isLoggedIn && (
-            <button disabled={!this.state.comment} type="submit">
-              Post
-            </button>
-          )}
-          {this.props.isLoggedIn && (
-            <button
-              disabled={!this.state.comment}
-              onClick={this.props.togglePostComment}
-              type="button"
-            >
-              Cancel
-            </button>
-          )}
+          <div id="comment-submit">
+            {this.props.isLoggedIn && (
+              <button
+                id="post-comment"
+                disabled={!this.state.comment}
+                type="submit"
+              >
+                Post
+              </button>
+            )}
+            {this.props.isLoggedIn && (
+              <button
+                id="cancel-comment"
+                disabled={!this.state.comment}
+                onClick={this.props.togglePostComment}
+                type="button"
+              >
+                Cancel
+              </button>
+            )}
+          </div>
         </form>
       </div>
     );

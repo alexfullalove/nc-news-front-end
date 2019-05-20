@@ -2,9 +2,10 @@
   width: 60%;
   margin: auto;
   margin-top: 5vh;
+  margin-bottom: 5vh;
   padding: 2vw;
   border-radius: 8px;
-  background-color: rgb(189, 189, 189);
+  background-color: white;
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
@@ -25,34 +26,46 @@
   margin: 0 !important;
   padding: 0 !important;
 }
+
 #like-button {
-  background-color: rgb(166, 231, 166);
-  border: none;
+  background-color: #ffffff;
+  border: solid black 1.5px;
   border-radius: 4px;
-  margin: 0.5vw;
-  height: 4vh;
-  width: 5%;
+  font-weight: 500;
+  text-decoration: none;
+  opacity: 0.6;
+  width: 75px;
+  padding: 1.5vw;
+  margin-right: 1vw;
 }
+
+#like-button:hover {
+  transition: 0.5s;
+  background-color: #91f096;
+  opacity: 1;
+}
+
 #dislike-button {
-  background-color: rgb(231, 166, 166);
-  border: none;
+  background-color: #ffffff;
+  border: solid black 1.5px;
   border-radius: 4px;
-  margin: 0.5vw;
-  height: 4vh;
-  width: 5%;
+  font-weight: 500;
+  text-decoration: none;
+  opacity: 0.6;
+  width: 75px;
+  padding: 1.5vw;
+  margin-right: 1vw;
+}
+
+#dislike-button:hover {
+  transition: 0.5s;
+  background-color: #f09191;
+  opacity: 1;
 }
 
 @media only screen and (max-width: 768px) {
   .article-card {
     width: 85%;
     text-align: center;
-  }
-
-  #like-button {
-    width: 60%;
-  }
-
-  #dislike-button {
-    width: 60%;
   }
 }

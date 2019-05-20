@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { patchCommentVotes } from "../api";
+import { FaRegCalendarAlt, FaRegHeart, FaUser } from "react-icons/fa";
+import { IoIosChatbubbles } from "react-icons/io";
 import "../Comment.css";
 
 class CommentCard extends Component {
@@ -7,13 +9,21 @@ class CommentCard extends Component {
   render() {
     return (
       <div className="comment">
-        <h4>Author:</h4>
-        <p>{this.props.comment.author}</p>
-        <h5>Comment: </h5>
-        <p>{this.props.comment.body}</p>
-        <h5>Votes: {this.props.comment.votes + this.state.currentVote}</h5>
+        <p>
+          <IoIosChatbubbles /> {this.props.comment.body}
+        </p>
+        <p>
+          <FaUser /> {this.props.comment.author}
+        </p>
+        <h5>
+          <FaRegHeart /> {this.props.comment.votes + this.state.currentVote}
+        </h5>
+        <p>
+          <FaRegCalendarAlt /> {this.props.comment.created_at}
+        </p>
         {this.props.isLoggedIn && (
           <button
+            id="like-button"
             disabled={this.state.currentVote === 1}
             onClick={e =>
               this.state.currentVote === -1
@@ -21,11 +31,12 @@ class CommentCard extends Component {
                 : this.handleCommentVote(e, 1)
             }
           >
-            like
+            LIKE
           </button>
         )}
         {this.props.isLoggedIn && (
           <button
+            id="dislike-button"
             disabled={this.state.currentVote === -1}
             onClick={e =>
               this.state.currentVote === 1
@@ -33,16 +44,17 @@ class CommentCard extends Component {
                 : this.handleCommentVote(e, -1)
             }
           >
-            Dislike
+            DISLIKE
           </button>
         )}
         {this.props.currentUser === this.props.comment.author && (
           <button
+            id="delete-button"
             onClick={e =>
               this.props.handleDeleteComment(e, this.props.comment.comment_id)
             }
           >
-            DeleteComment
+            DELETE
           </button>
         )}
       </div>

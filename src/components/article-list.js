@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { Link, navigate } from "@reach/router";
 import { getArticles } from "../api";
 import SortBy from "./sort-by";
-import { IoMdSync } from "react-icons/io";
+import { IoMdSync, IoIosChatbubbles } from "react-icons/io";
+import { FaPencilAlt, FaRegCalendarAlt, FaRegHeart } from "react-icons/fa";
 import "../Article-list.css";
 import InfiniteScroll from "react-infinite-scroll-component";
+import FadeIn from "react-fade-in";
 
 class ArticleList extends Component {
   state = {
@@ -35,17 +37,27 @@ class ArticleList extends Component {
           >
             {this.state.articles.map(article => {
               return (
-                <li key={article.article_id} article={article}>
-                  <h3>{article.title}</h3>
-                  <p>Author: {article.author}</p>
-                  <p>Comments: {article.comment_count}</p>
-                  <p>Votes: {article.votes}</p>
-                  <p>Created: {article.created_at}</p>
-                  <Link to={`/articles/${article.article_id}`}>
-                    <button className="readme">READ</button>
-                  </Link>
-                  <p className="underline">_______________</p>
-                </li>
+                <FadeIn>
+                  <li key={article.article_id} article={article}>
+                    <h3>{article.title}</h3>
+                    <p>
+                      <FaPencilAlt /> {article.author}
+                    </p>
+                    <p>
+                      <IoIosChatbubbles /> {article.comment_count}
+                    </p>
+                    <p>
+                      <FaRegHeart /> {article.votes}
+                    </p>
+                    <p>
+                      <FaRegCalendarAlt /> {article.created_at}
+                    </p>
+                    <Link to={`/articles/${article.article_id}`}>
+                      <button className="readme">READ</button>
+                    </Link>
+                    <p className="underline">_______________</p>
+                  </li>
+                </FadeIn>
               );
             })}
           </InfiniteScroll>
