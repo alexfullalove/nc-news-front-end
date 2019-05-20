@@ -2,6 +2,7 @@ import React from "react";
 import CommentList from "./comment-list";
 import { navigate } from "@reach/router";
 import FadeIn from "react-fade-in";
+import { IoMdSync } from "react-icons/io";
 import {
   getSingleArticle,
   getComments,
@@ -28,7 +29,12 @@ class ArticleCard extends React.Component {
     page: 1
   };
   render() {
-    if (this.state.loading) return <p>loading...</p>;
+    if (this.state.loading)
+      return (
+        <p className="loading">
+          <IoMdSync />
+        </p>
+      );
     return (
       <FadeIn>
         <div className="article-card">
