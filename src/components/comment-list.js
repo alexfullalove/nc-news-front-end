@@ -4,12 +4,9 @@ import React, { Component } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 class CommentList extends Component {
-  state = {
-    isLoggedIn: this.props.isLoggedIn,
-    currentUser: this.props.currentUser,
-    showAddComment: false
-  };
+  state = { showAddComment: false };
   render() {
+    console.log(this.state.showAddComment);
     return (
       <div>
         <h3>Comments</h3>
@@ -27,8 +24,9 @@ class CommentList extends Component {
           <AddComment
             isLoggedIn={this.props.isLoggedIn}
             currentUser={this.props.currentUser}
-            showAddComment={this.props.showAddComment}
+            showAddComment={this.state.showAddComment}
             handlePostComment={this.props.handlePostComment}
+            togglePostComment={this.togglePostComment}
           />
         )}
         <InfiniteScroll

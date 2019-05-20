@@ -5,7 +5,6 @@ import "../Comment.css";
 class CommentCard extends Component {
   state = { currentVote: 0 };
   render() {
-    console.log(this.props);
     return (
       <div className="comment">
         <h4>Author:</h4>

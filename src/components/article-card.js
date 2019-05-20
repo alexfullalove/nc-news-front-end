@@ -16,7 +16,6 @@ class ArticleCard extends React.Component {
     article: [],
     loading: true,
     comments: [],
-    showComments: false,
     votes: 0,
     currentVote: 0,
     hasMore: true,
@@ -77,12 +76,11 @@ class ArticleCard extends React.Component {
     const newComment = {
       author: this.props.currentUser,
       body: comment,
-      created_at: Date.now(),
-      votes: 0,
-      comment_id: Date.now()
+      votes: 0
     };
-    postComment(newComment, this.props.article_id);
-    this.setState({ comments: [newComment, ...this.state.comments] });
+    postComment(newComment, this.props.article_id).then(comment => {
+      this.setState({ comments: [comment, ...this.state.comments] });
+    });
   };
   handleDeleteComment = (e, comment_id) => {
     deleteComment(comment_id);

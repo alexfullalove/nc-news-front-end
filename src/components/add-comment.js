@@ -12,14 +12,27 @@ class AddComment extends Component {
           onSubmit={e => {
             e.preventDefault();
             this.props.handlePostComment(this.state.comment);
+            this.props.togglePostComment();
           }}
         >
           <textarea
             onChange={this.handleTypeComment}
             placeholder="type your comment here..."
           />
-          {this.props.isLoggedIn && <button type="submit">Post</button>}
-          {this.props.isLoggedIn && <button type="button">Cancel</button>}
+          {this.props.isLoggedIn && (
+            <button disabled={!this.state.comment} type="submit">
+              Post
+            </button>
+          )}
+          {this.props.isLoggedIn && (
+            <button
+              disabled={!this.state.comment}
+              onClick={this.props.togglePostComment}
+              type="button"
+            >
+              Cancel
+            </button>
+          )}
         </form>
       </div>
     );
