@@ -79,7 +79,7 @@ class CommentList extends Component {
   }
 
   togglePostComment = () => {
-    this.setState({ showAddComment: !this.state.showAddComment });
+    this.setState(prevState => ({ showAddComment: !prevState.showAddComment }));
   };
 }
 
