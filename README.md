@@ -33,22 +33,23 @@ Some functionality has been disabled unless the user is logged in, a suggested d
 ### Prerequisites
 
 Git CLI (version >= 2)
+
 Node (version >= 10.15.3)
 
 ### Instructions
 
 Clone this repo
 
-git clone https://github.com/alexfullalove/nc-news-front-end
+`git clone https://github.com/alexfullalove/nc-news-front-end`
 
 Open project folder
 
-cd nc-news-front-end
+`cd nc-news-front-end`
 
 Install dependencies
 
-npm install
+`npm install`
 
 Start the app locally
 
-npm start
+`npm start`
