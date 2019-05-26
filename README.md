@@ -12,10 +12,10 @@ Northcoders News has articles which are divided into topics. Each article has us
 
 Some functionality has been disabled unless the user is logged in, a suggested default username is 'jessjelly'.
 
-Built With:
+### Built With:
 
-React Js
-Axios
+[React](https://reactjs.org/)
+[Axios](https://github.com/axios/axios)
 React-Icons
 React-Fade-in
 React-Infinte-scroll
@@ -23,12 +23,13 @@ React-Navbar
 Node 12
 Reach Router
 
-Prerequisites
+### Prerequisites
 
 Git CLI (version >= 2)
 Node (version >= 10.15.3)
 
-Instructions
+### Instructions
+
 Clone this repo
 
 git clone https://github.com/alexfullalove/nc-news-front-end
