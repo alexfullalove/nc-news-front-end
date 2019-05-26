@@ -2,6 +2,8 @@
 
 [Try the Netlify hosted version](https://alex-nc-news.netlify.com/)
 
+[View the API hosted on Heroku](https://thawing-fortress-68943.herokuapp.com/api/articles)
+
 ## Description
 
 This is the Front-End to my Northcoers NC News project built using React js and using my own Back-end API hosted on Heroku.
@@ -54,7 +56,6 @@ Install dependencies
 
 ```
 npm install
-
 ```
 
 Start the app locally
