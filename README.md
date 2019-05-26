@@ -31,7 +31,7 @@ git clone https://github.com/alexfullalove/nc-news-front-end
 
 Open project folder
 
-cd russ-nc-news-frontend
+cd nc-news-front-end
 
 Install dependencies
 
