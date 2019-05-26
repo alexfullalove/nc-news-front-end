@@ -33,7 +33,11 @@ class ArticleList extends Component {
             dataLength={this.state.articles.length}
             next={this.fetchMoreData}
             hasMore={this.state.hasMore}
-            loader={<h4>Loading...</h4>}
+            loader={
+              <p className="loading">
+                <IoMdSync />
+              </p>
+            }
           >
             {this.state.articles.map(article => {
               return (

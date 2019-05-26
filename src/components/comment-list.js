@@ -1,12 +1,19 @@
 import CommentCard from "./comment-card";
 import AddComment from "./add-comment";
 import React, { Component } from "react";
+import { IoMdSync } from "react-icons/io";
 import InfiniteScroll from "react-infinite-scroll-component";
 import FadeIn from "react-fade-in";
 
 class CommentList extends Component {
-  state = { showAddComment: false };
+  state = { showAddComment: false, loading: true };
   render() {
+    if (this.state.loading)
+      return (
+        <p className="loading">
+          <IoMdSync />
+        </p>
+      );
     return (
       <div>
         <h3>Comments</h3>
@@ -36,7 +43,11 @@ class CommentList extends Component {
           dataLength={this.props.comments.length}
           next={this.props.fetchMoreData}
           hasMore={this.props.hasMore}
-          loader={<h4>Loading...</h4>}
+          loader={
+            <p className="loading">
+              <IoMdSync />
+            </p>
+          }
         >
           {this.props.comments.map(comment => {
             return (
@@ -55,6 +66,10 @@ class CommentList extends Component {
         </InfiniteScroll>
       </div>
     );
+  }
+
+  componentDidMount() {
+    this.setState({ loading: false });
   }
 
   componentDidUpdate(prevProps, prevState) {
