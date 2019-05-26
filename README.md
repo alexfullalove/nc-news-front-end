@@ -40,7 +40,11 @@ Node (version >= 10.15.3)
 
 Clone this repo
 
-`git clone https://github.com/alexfullalove/nc-news-front-end`
+```
+
+git clone https://github.com/alexfullalove/nc-news-front-end
+
+```
 
 Open project folder
 
