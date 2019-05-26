@@ -1,11 +1,11 @@
 import "./CSS/App.css";
 import React, { Component } from "react";
-import Header from "./components/header";
-import Nav from "./components/nav";
-import ArticleList from "./components/article-list";
-import ArticleCard from "./components/article-card";
+import Header from "./components/Header.js";
+import Nav from "./components/Nav.js";
+import ArticleList from "./components/Article-list.js";
+import ArticleCard from "./components/Article-card.js";
 import { Router } from "@reach/router";
-import TopicList from "./components/topic-list";
+import TopicList from "./components/Topic-list.js";
 import { logIn } from "./api";
 import ErrorPage from "./components/ErrorPage";
 
