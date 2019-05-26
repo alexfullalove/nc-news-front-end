@@ -4,7 +4,7 @@ import { getArticles } from "../api";
 import SortBy from "./sort-by";
 import { IoMdSync, IoIosChatbubbles } from "react-icons/io";
 import { FaPencilAlt, FaRegCalendarAlt, FaRegHeart } from "react-icons/fa";
-import "../Article-list.css";
+import "../CSS/Article-list.css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import FadeIn from "react-fade-in";
 

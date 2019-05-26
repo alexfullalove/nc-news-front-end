@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { patchCommentVotes } from "../api";
 import { FaRegCalendarAlt, FaRegHeart, FaUser } from "react-icons/fa";
 import { IoIosChatbubbles } from "react-icons/io";
-import "../Comment.css";
+import "../CSS/Comment.css";
 
 class CommentCard extends Component {
   state = { currentVote: 0 };

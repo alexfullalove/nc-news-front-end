@@ -3,7 +3,7 @@ import { Link } from "@reach/router";
 import { IoMdSync } from "react-icons/io";
 import { getTopics } from "../api";
 import FadeIn from "react-fade-in";
-import "../Topics.css";
+import "../CSS/Topics.css";
 
 class TopicList extends Component {
   state = { topics: [], loading: true };

@@ -1,6 +1,6 @@
 import React from "react";
 import FadeIn from "react-fade-in";
-import "../Errors.css";
+import "../CSS/Errors.css";
 
 const ErrorCard = ({ error: { message, status }, location }) => {
   return (

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { TiArrowShuffle } from "react-icons/ti";
-import "../Sortby.css";
+import "../CSS/Sortby.css";
 
 class SortBy extends Component {
   state = { sort: "created_at" };

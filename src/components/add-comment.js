@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../Addcomment.css";
+import "../CSS/Addcomment.css";
 
 class AddComment extends Component {
   state = {

@@ -10,7 +10,7 @@ import {
   deleteComment,
   patchArticleVotes
 } from "../api";
-import "../Article-card.css";
+import "../CSS/Article-card.css";
 import {
   FaPencilAlt,
   FaRegCalendarAlt,

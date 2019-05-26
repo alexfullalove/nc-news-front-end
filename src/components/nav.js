@@ -3,7 +3,7 @@ import { Link } from "@reach/router";
 import ResponsiveMenu from "react-responsive-navbar";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
 import { FaHome, FaFolder, FaUser } from "react-icons/fa";
-import "../Nav.css";
+import "../CSS/Nav.css";
 
 class Nav extends Component {
   state = { username: "", showLogin: true };
