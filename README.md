@@ -1,6 +1,6 @@
 # nc-news-front-end
 
-[] Try the app hosted on Netlify
+[Try the Netlify hosted version](https://alex-nc-news.netlify.com/)
 
 This is the Front-End to my Northcoers NC News project built using React js and using my own Back-end API hosted on Heroku.
 
