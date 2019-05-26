@@ -94,11 +94,13 @@ button.signout {
   .navbuttons {
     width: 50%;
     margin: auto;
+    padding: 0;
   }
   .nav button {
     height: 5vh;
     width: 30vw;
     margin-bottom: 2vw;
+    padding: 0;
   }
   .nav input {
     height: 4vh;
