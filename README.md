@@ -12,7 +12,7 @@ Northcoders News has articles which are divided into topics. Each article has us
 
 Some functionality has been disabled unless the user is logged in, a suggested default username is 'jessjelly'
 
-# Built With
+# Built using
 
 [React](https://reactjs.org/)
 
