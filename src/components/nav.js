@@ -68,7 +68,7 @@ class Nav extends Component {
   };
   handleLogIn = e => {
     e.preventDefault();
-    this.props.handleSubmit(this.state.username);
+    if (this.state.username) this.props.handleSubmit(this.state.username);
   };
   componentDidUpdate(prevProps, prevState) {
     const showLogin = this.props.isLoggedIn ? false : true;
