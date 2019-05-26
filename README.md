@@ -2,6 +2,8 @@
 
 [Try the Netlify hosted version](https://alex-nc-news.netlify.com/)
 
+## Description
+
 This is the Front-End to my Northcoers NC News project built using React js and using my own Back-end API hosted on Heroku.
 
 Northcoders News is a social news aggregation, web content rating, and discussion website along the lines of Reddit.
