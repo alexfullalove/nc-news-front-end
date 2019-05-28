@@ -62,7 +62,9 @@ class CommentCard extends Component {
   }
   handleCommentVote = (e, direction) => {
     patchCommentVotes(this.props.comment.comment_id, direction);
-    this.setState({ currentVote: this.state.currentVote + direction });
+    this.setState(prevState => ({
+      currentVote: prevState.currentVote + direction
+    }));
     this.setState(prevState => {
       const newVote = prevState.votes + direction;
       return { votes: newVote };
