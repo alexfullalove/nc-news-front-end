@@ -100,31 +100,36 @@ class ArticleCard extends React.Component {
       votes: 0
     };
     postComment(newComment, this.props.article_id).then(comment => {
-      this.setState({ comments: [comment, ...this.state.comments] });
+      this.setState(prevState => ({
+        comments: [comment, ...prevState.comments]
+      }));
     });
   };
   handleDeleteComment = (e, comment_id) => {
     deleteComment(comment_id);
-    this.setState({
-      comments: this.state.comments.filter(comment => {
+    this.setState(prevState => ({
+      comments: prevState.comments.filter(comment => {
         return comment.comment_id !== comment_id;
       })
-    });
+    }));
   };
 
   handleVote = (e, direction) => {
     patchArticleVotes(this.state.article.article_id, direction);
-    this.setState({ currentVote: this.state.currentVote + direction });
     this.setState(prevState => {
       const newVote = prevState.votes + direction;
-      return { votes: newVote };
+      return { votes: newVote, currentVote: prevState.currentVote + direction };
     });
   };
 
   componentDidMount() {
     getSingleArticle(this.props.article_id)
       .then(article => {
-        this.setState({ article, loading: false, page: this.state.page + 1 });
+        this.setState(prevState => ({
+          article,
+          loading: false,
+          page: prevState + 1
+        }));
       })
       .then(
         getComments(this.props.article_id, this.state.page).then(comments =>
@@ -142,11 +147,11 @@ class ArticleCard extends React.Component {
   fetchMoreData = () => {
     getComments(this.props.article_id, this.state.page)
       .then(comments =>
-        this.setState({
-          comments: [...this.state.comments, ...comments],
+        this.setState(prevState => ({
+          comments: [...prevState.comments, ...comments],
           loading: false,
-          page: this.state.page + 1
-        })
+          page: prevState + 1
+        }))
       )
       .catch(({ response: { data, status } }) => {
         this.setState({ loading: false, hasMore: false });
