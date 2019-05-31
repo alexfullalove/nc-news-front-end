@@ -39,14 +39,23 @@ class App extends Component {
       </div>
     );
   }
+  componentDidMount() {
+    const user = localStorage.getItem("currentUser");
+    if (user) {
+      this.setState({ isLoggedIn: true, currentUser: user });
+    }
+  }
+
   handleSubmit = username => {
     logIn(username).then(({ username }) => {
       if (username) {
+        localStorage.setItem("currentUser", username);
         this.setState({ isLoggedIn: true, currentUser: username });
       } else this.setState({ invalidUser: true });
     });
   };
   handleSignOut = () => {
+    localStorage.removeItem("currentUser");
     this.setState({ isLoggedIn: false, currentUser: "", invalidUser: false });
   };
 }
