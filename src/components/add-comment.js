@@ -17,24 +17,20 @@ class AddComment extends Component {
           }}
         >
           <textarea
+            required={true}
             id="text-area"
             onChange={this.handleTypeComment}
             placeholder="type your comment here..."
           />
           <div id="comment-submit">
             {this.props.isLoggedIn && (
-              <button
-                id="post-comment"
-                disabled={!this.state.comment}
-                type="submit"
-              >
+              <button id="post-comment" type="submit">
                 Post
               </button>
             )}
             {this.props.isLoggedIn && (
               <button
                 id="cancel-comment"
-                disabled={!this.state.comment}
                 onClick={this.props.togglePostComment}
                 type="button"
               >
