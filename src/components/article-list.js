@@ -73,11 +73,11 @@ class ArticleList extends Component {
     const { topic } = this.props;
     getArticles({ topic, sort_by: this.state.sortBy, page: this.state.page })
       .then(articles =>
-        this.setState({
+        this.setState(prevState => ({
           articles,
           loading: false,
-          page: this.state.page + 1
-        })
+          page: prevState.page + 1
+        }))
       )
       .catch(({ response: { data, status } }) => {
         this.setState({ loading: false });
