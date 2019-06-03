@@ -1,5 +1,5 @@
-import CommentCard from "./Comment-card.js";
-import AddComment from "./Add-comment.js";
+import CommentCard from "./comment-card.js";
+import AddComment from "./add-comment.js";
 import React, { Component } from "react";
 import { IoMdSync } from "react-icons/io";
 import InfiniteScroll from "react-infinite-scroll-component";

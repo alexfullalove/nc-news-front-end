@@ -1,5 +1,5 @@
 import React from "react";
-import CommentList from "./Comment-list";
+import CommentList from "./comment-list";
 import { navigate } from "@reach/router";
 import FadeIn from "react-fade-in";
 import { IoMdSync } from "react-icons/io";

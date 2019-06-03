@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, navigate } from "@reach/router";
 import { getArticles } from "../api";
-import SortBy from "./Sort-by";
+import SortBy from "./sort-by";
 import { IoMdSync, IoIosChatbubbles } from "react-icons/io";
 import { FaPencilAlt, FaRegCalendarAlt, FaRegHeart } from "react-icons/fa";
 import "../CSS/Article-list.css";
